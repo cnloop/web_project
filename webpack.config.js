@@ -19,18 +19,19 @@ module.exports = {
     entry: path.resolve(__dirname, './src/js/index.js'),
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: './' // 只是规定静态文件的前缀
     },
     //  devServer 主要是将项目资源文件生成到内存中
     devServer: {
-        contentBase: path.join(__dirname, './'),
-        // publicPath: '/assets',
+        contentBase: path.join(__dirname, './happy.html'),
+        publicPath: '/dev/', // 只是规定所有静态文件输出的路径
         host: host,
-        // open: true
+        open: true
     },
     plugins: [
         // HtmlWebpackPlugin 功能点==》1.从template配置中html复制文件到内存中 2.自动将bundle文件引入html文件
-        new HtmlWebpackPlugin({ template: './src/index.html', filename: "index.html" }),
+        new HtmlWebpackPlugin({ template: './src/index.html', filename: 'happy.html' }),
         new VueLoaderPlugin()
     ],
     module: {
